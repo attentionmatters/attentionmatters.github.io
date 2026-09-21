@@ -1,9 +1,9 @@
 export const en = {
   meta: {
-    title: "Gaojiannan (Peter) Mu",
+    title: "Peter M.",
     tagline: "AI Talent & Cross-Border Team Building · Toronto",
     description:
-      "Gaojiannan (Peter) Mu — HR executive turned AI-talent operator. AI talent, cross-border team building, and tools built from twelve years of practice.",
+      "Peter M. — HR executive turned AI-talent operator. AI talent, cross-border team building, and tools built from twelve years of practice.",
   },
 
   nav: {
@@ -19,7 +19,7 @@ export const en = {
   },
 
   hero: {
-    name: "GAOJIANNAN (PETER) MU",
+    name: "Peter M.",
     tagline: "Dad. Husband. HR Expert & Operator. Midlife Rebel.",
     sub: "AI Talent & Cross-Border Team Building · Toronto",
     cta: "Download Resume",
@@ -31,7 +31,7 @@ export const en = {
     eyebrow: "INTRO",
     greeting: "Hi! I'm Peter —",
     body:
-      "I'm Gaojiannan (Peter) Mu. These days, I'd describe myself as a midlife rebel. For twelve years, I've worked in fast-growing, ambitious companies, pushing myself to outdo my peers — caught in a cycle of competing and proving myself. Now, I'm rethinking what deserves my time and attention.",
+      "These days, I'd describe myself as a midlife rebel. For twelve years, I've worked in fast-growing, ambitious companies, pushing myself to outdo my peers — caught in a cycle of competing and proving myself. Now, I'm rethinking what deserves my time and attention.",
     more: "More about me",
   },
 
@@ -167,7 +167,7 @@ export const en = {
     statement: "AI talent, built across borders.",
     nav: "Navigate",
     elsewhere: "Elsewhere",
-    rights: "© 2026 Gaojiannan Mu",
+    rights: "© 2026 Peter M.",
     built: "Built with Claude Code",
   },
 };

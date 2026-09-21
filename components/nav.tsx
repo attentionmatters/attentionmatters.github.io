@@ -28,7 +28,7 @@ export function Nav({ locale, t }: { locale: Locale; t: Dictionary }) {
     <header className="nav">
       <div className="wrap nav__inner">
         <Link href={`/${locale}/`} className="mark" aria-label={t.nav.home}>
-          GM
+          PM
         </Link>
 
         <nav className={`nav__links ${open ? "is-open" : ""}`} aria-label="Main">

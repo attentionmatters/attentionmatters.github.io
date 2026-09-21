@@ -12,9 +12,9 @@ const sourceSans = Source_Sans_3({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Gaojiannan (Peter) Mu",
+  title: "Peter M.",
   description:
-    "Gaojiannan (Peter) Mu — HR executive turned AI-talent operator, based in Toronto.",
+    "Peter M. — HR executive turned AI-talent operator, based in Toronto.",
 };
 
 export default function RootLayout({

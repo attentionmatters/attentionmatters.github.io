@@ -9,7 +9,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
     <footer className="foot">
       <div className="wrap foot__cols">
         <div>
-          <span className="mark mark--static" aria-hidden="true">GM</span>
+          <span className="mark mark--static" aria-hidden="true">PM</span>
           <p className="foot__statement">{t.footer.statement}</p>
         </div>
 

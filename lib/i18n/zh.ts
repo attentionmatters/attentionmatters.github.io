@@ -6,10 +6,10 @@ import type { Dictionary } from "./en";
  */
 export const zh: Dictionary = {
   meta: {
-    title: "穆高建楠 (Peter)",
+    title: "Peter M.",
     tagline: "AI 人才与跨境团队搭建 · 多伦多",
     description:
-      "穆高建楠（Peter Mu）—— 从 HR 高管到 AI 人才实践者。专注 AI 人才、跨境团队搭建，以及用十二年经验做出来的工具。",
+      "Peter M. —— 从 HR 高管到 AI 人才实践者。专注 AI 人才、跨境团队搭建，以及用十二年经验做出来的工具。",
   },
 
   nav: {
@@ -25,7 +25,7 @@ export const zh: Dictionary = {
   },
 
   hero: {
-    name: "穆高建楠 (Peter)",
+    name: "Peter M.",
     tagline: "父亲。丈夫。HR 专家与实践者。中年叛逆者。",
     sub: "AI 人才与跨境团队搭建 · 多伦多",
     cta: "下载简历",
@@ -37,7 +37,7 @@ export const zh: Dictionary = {
     eyebrow: "自述",
     greeting: "你好，我是 Peter ——",
     body:
-      "我是 Gaojiannan（Peter）Mu。现阶段，我会用「中年叛逆者」来形容自己。过去十二年，我一直在高速发展、充满雄心的企业里工作，努力超越同龄人，不断竞争、证明自己。现在，我开始重新思考，什么值得我的时间和关注。",
+      "现阶段，我会用「中年叛逆者」来形容自己。过去十二年，我一直在高速发展、充满雄心的企业里工作，努力超越同龄人，不断竞争、证明自己。现在，我开始重新思考，什么值得我的时间和关注。",
     more: "更多关于我",
   },
 
@@ -173,7 +173,7 @@ export const zh: Dictionary = {
     statement: "AI 人才，跨境搭建。",
     nav: "导航",
     elsewhere: "其他平台",
-    rights: "© 2026 穆高建楠",
+    rights: "© 2026 Peter M.",
     built: "由 Claude Code 构建",
   },
 };
