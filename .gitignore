@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Next.js 静态导出产物，由 CI 构建，不进仓库
+/out/
