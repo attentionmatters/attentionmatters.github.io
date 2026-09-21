@@ -46,6 +46,12 @@ export type Entry = {
    * 页面上会单独分组并标注作者，避免让人误以为是你做的。
    */
   by?: { name: string; url: string } | null;
+  /**
+   * 封面图。放在 public/covers/<slug>.png。
+   * 这些作品本身就是视觉产物，封面是这一页辨识度的主要来源。
+   * 可用本地 HTML 原件无头截图批量生成。
+   */
+  cover?: string | null;
   /** YYYY-MM */
   date: string;
 };

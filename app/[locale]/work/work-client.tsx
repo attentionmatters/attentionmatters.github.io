@@ -33,6 +33,10 @@ export function WorkClient({
           soon: t.work.soon,
           partCount: t.work.partCount,
         }}
+        topicLabel={(e) => {
+          const topic = (e as WorkEntry).topic;
+          return { text: t.topics[topic], tone: topic };
+        }}
       />
     </>
   );

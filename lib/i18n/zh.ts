@@ -128,6 +128,7 @@ export const zh: Dictionary = {
     title: "我从中看到了什么",
     intro:
       "作品是材料，这里是结论。有些背后就是隔壁那批数据，有些只是我干了十二年之后的判断。两种我都会标出来。",
+    placeholder: "待填写：值得写的几篇 —— 你的判断，有没有数据支撑都行。",
     readingTime: "分钟阅读",
     empty: "头几篇正在写。",
     back: "全部洞察",

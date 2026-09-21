@@ -16,6 +16,9 @@ export function LanguageToggle({ locale }: { locale: Locale }) {
   return (
     <div
       className="lang"
+      /* 唯一允许在英文页出现中文的地方：切换入口本身必须写「中文」，
+         否则中文读者在英文页上找不到它。纯度检查脚本会跳过带此标记的元素。 */
+      data-allow-cjk=""
       role="group"
       aria-label={locale === "zh" ? "语言" : "Language"}
     >

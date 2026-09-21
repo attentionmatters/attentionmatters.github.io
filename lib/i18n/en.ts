@@ -122,6 +122,7 @@ export const en = {
     title: "What I make of it",
     intro:
       "Work is the material; this is the conclusion. Some of these are backed by the datasets next door, some are just what I think after twelve years of doing this. Both are labelled.",
+    placeholder: "To be filled in: the pieces worth writing — your call, backed by data or not.",
     readingTime: "min read",
     empty: "First pieces are being written.",
     back: "All insights",

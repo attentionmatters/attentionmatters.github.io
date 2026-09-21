@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getDictionary } from "@/lib/i18n";
 import { LOCALES, SITE_URL, isLocale } from "@/lib/site";
 import { insights } from "@/lib/content/insights";
+import { Placeholder } from "@/components/placeholder";
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -49,30 +50,30 @@ export default async function Insights({
 
       <section className="section">
         <div className="wrap">
-          <div className="card-grid card-grid--2">
-            {sorted.map((post) => (
-              <Link
-                className="pcard"
-                key={post.slug}
-                href={`/${locale}/insights/${post.slug}/`}
-              >
-                <span className="pcard__status num">
-                  {post.date} · {post.readingMinutes} {t.insights.readingTime}
-                </span>
-                <h3 className="pcard__title">{post.title[locale]}</h3>
-                <p className="pcard__summary">{post.excerpt[locale]}</p>
-                <span className="tags">
-                  <span className={`tag ${post.kind === "data" ? "tag--data" : ""}`}>
-                    {post.kind === "data"
-                      ? t.insights.backedByData
-                      : t.insights.opinion}
+          {sorted.length > 0 ? (
+            <div className="card-grid card-grid--2">
+              {sorted.map((post) => (
+                <Link
+                  className="pcard pcard--lg"
+                  key={post.slug}
+                  href={`/${locale}/insights/${post.slug}/`}
+                  data-tone={post.topic}
+                >
+                  <span className="pcard__topic">{t.topics[post.topic]}</span>
+                  <h3 className="pcard__title">{post.title[locale]}</h3>
+                  <p className="pcard__summary">{post.excerpt[locale]}</p>
+                  <span className="pcard__foot">
+                    <span className="pcard__status num">
+                      {post.date} · {post.readingMinutes} {t.insights.readingTime}
+                    </span>
+                    <span className="pcard__go" aria-hidden="true">→</span>
                   </span>
-                  <span className="tag">{t.topics[post.topic]}</span>
-                </span>
-                <span className="pcard__go" aria-hidden="true">→</span>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Placeholder locale={locale} what={t.insights.placeholder} block />
+          )}
         </div>
       </section>
     </>

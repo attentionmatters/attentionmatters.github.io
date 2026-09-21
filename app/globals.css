@@ -1089,3 +1089,96 @@ html[data-locale="zh"] .pcard__audience-label { letter-spacing: 0.04em; }
 
 /* 分组小标题（工具页的「我做的 / 我在用的」）居中 */
 .group-head { text-align: center; margin-bottom: 26px; }
+
+/* ==========================================================================
+   内页卡片改版：标题在先，左侧色条按类别区分，状态挪到底部
+   ========================================================================== */
+
+.pcard--lg {
+  position: relative;
+  padding: 26px 26px 20px 30px;
+  overflow: hidden;
+}
+
+/* 左侧 4px 色条 —— 沿用既有 VI 的类别区分手法，让一屏卡片不再千篇一律 */
+.pcard--lg::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--line-hi);
+}
+.pcard--lg[data-tone="ecosystem"]::before { background: var(--accent); }
+.pcard--lg[data-tone="talent"]::before    { background: var(--ink); }
+
+/* 主题标签：跟着色条走 */
+.pcard--lg .pcard__topic {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+html[data-locale="zh"] .pcard--lg .pcard__topic { letter-spacing: 0.04em; }
+.pcard--lg[data-tone="ecosystem"] .pcard__topic {
+  background: var(--accent-wash);
+  color: var(--accent-d);
+}
+.pcard--lg[data-tone="talent"] .pcard__topic {
+  background: #05164D14;
+  color: var(--ink);
+}
+
+.pcard--lg .pcard__title {
+  margin-top: 0;
+  font-size: 1.3125rem;
+  letter-spacing: -0.01em;
+}
+.pcard--lg .pcard__summary { margin-top: 10px; font-size: 1rem; }
+
+/* 底部一行：状态在左，箭头在右 */
+.pcard__foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.pcard__foot .pcard__status { margin: 0; }
+.pcard__foot .pcard__go {
+  margin: 0 0 0 auto;
+  padding: 0;
+  font-size: 1.125rem;
+  transition: transform .18s ease;
+}
+.pcard--lg:hover .pcard__foot .pcard__go { transform: translateX(4px); }
+.pcard__foot .pcard__by { margin: 0; }
+
+/* 卡片是 flex 列，子元素默认会被拉满宽 —— 胶囊标签要收回自身宽度 */
+.pcard--lg .pcard__topic,
+.pcard--lg .pcard__status { align-self: flex-start; }
+
+/* —— 卡片封面：这些作品本身是视觉产物，图比文字更有辨识度 —— */
+.pcard__cover {
+  display: block;
+  margin: -26px -26px 18px -30px;   /* 抵消卡片内边距，做成出血 */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.pcard__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform .3s ease;
+}
+.pcard--lg:hover .pcard__cover img { transform: scale(1.02); }
