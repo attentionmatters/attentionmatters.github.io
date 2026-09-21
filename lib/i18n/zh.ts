@@ -35,10 +35,12 @@ export const zh: Dictionary = {
 
   intro: {
     eyebrow: "自述",
-    greeting: "你好，我是 Peter ——",
+    greeting: "你好，我是 Peter",
     body:
       "现阶段，我会用「中年叛逆者」来形容自己。过去十二年，我一直在高速发展、充满雄心的企业里工作，努力超越同龄人，不断竞争、证明自己。现在，我开始重新思考，什么值得我的时间和关注。",
     more: "更多关于我",
+    sayHello: "打个招呼！",
+    emailMe: "给我写信 @",
   },
 
   identities: {

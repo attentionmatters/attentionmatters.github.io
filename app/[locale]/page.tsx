@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { Placeholder } from "@/components/placeholder";
 import { getDictionary } from "@/lib/i18n";
 import { LOCALES, isLocale } from "@/lib/site";
-import { RESUME_URL, hasResume, PORTRAIT_PATH, hasPortrait } from "@/lib/profile";
+import { RESUME_URL, hasResume, PORTRAIT_PATH, hasPortrait, EMAIL } from "@/lib/profile";
 import { recent } from "@/lib/content/experience";
 import { work } from "@/lib/content/work";
 import { tools } from "@/lib/content/tools";
@@ -65,18 +65,31 @@ export default async function Home({
                 what={locale === "zh" ? "你的照片" : "your portrait"}
               />
             )}
+            {/* 压在照片右下角 —— 整站唯一一处俏皮 */}
+            <div className="hello-chip">
+              <b>{t.intro.sayHello}</b>
+              <span>
+                {t.intro.emailMe} <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ——— 自述 ——— */}
       <section className="section section--tight">
-        <div className="wrap intro">
-          <p className="intro__greeting">{t.intro.greeting}</p>
-          <p className="intro__body">{t.intro.body}</p>
-          <Link className="arrow-link" href={`/${locale}/about/`}>
-            {t.intro.more} <span aria-hidden="true">→</span>
-          </Link>
+        <div className="wrap statement-wrap">
+          <p className="statement">
+            {t.intro.greeting}
+            <span className="dash" aria-hidden="true" />
+            {t.hero.tagline}
+          </p>
+          <p className="statement__sub">{t.intro.body}</p>
+          <p className="center-cta">
+            <Link className="btn btn--primary" href={`/${locale}/about/`}>
+              {t.intro.more} <span aria-hidden="true">→</span>
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -125,15 +138,20 @@ export default async function Home({
             <span className="eyebrow">{t.experience.eyebrow}</span>
             <h2>{t.experience.recent}</h2>
           </div>
-          <div className="rows">
+          <div className="timeline">
             {recentTop.map((r, i) => (
-              <div className="row" key={`${r.period}-${i}`}>
-                <span className="row__period">{r.period}</span>
-                <span>
-                  <span className="row__title">{r.company[locale]}</span>
-                  <span className="row__outcome">{r.outcome[locale]}</span>
+              <div className="tl-item" key={`${r.period}-${i}`}>
+                <span className="tl-when">
+                  <span className="tl-org">{r.company[locale]}</span>
+                  <span className="tl-date">{r.period}</span>
                 </span>
-                <span className="row__meta">{r.title[locale]}</span>
+                <span className="tl-rail" aria-hidden="true">
+                  <span className="tl-dot" />
+                </span>
+                <span>
+                  <span className="tl-role">{r.title[locale]}</span>
+                  <span className="tl-what">{r.outcome[locale]}</span>
+                </span>
               </div>
             ))}
           </div>

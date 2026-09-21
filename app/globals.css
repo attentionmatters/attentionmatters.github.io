@@ -34,6 +34,10 @@
                "Noto Sans SC", "Microsoft YaHei", "PingFang SC",
                Helvetica, Arial, sans-serif;
 
+  /* —— 形态 —— */
+  --r:   6px;   /* 小圆角：保留一点亲和感，又不背离「方角」太远 */
+  --r-pill: 999px;
+
   /* —— 栅格 —— */
   --max:       1100px;
   --gutter:    24px;
@@ -76,8 +80,8 @@ h1, h2, h3, h4 {
   margin: 0;
   line-height: 1.2;
 }
-h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); letter-spacing: -0.015em; }
-h2 { font-size: clamp(1.625rem, 3vw, 2.25rem); letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.5rem, 5.6vw, 4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em; }
 h3 { font-size: 1.25rem; }
 
 p { margin: 0 0 1em; max-width: 68ch; }
@@ -99,14 +103,18 @@ a:hover { color: var(--ink); }
   padding-inline: var(--gutter);
 }
 
+/* 小标签做成实心胶囊 —— 原来的灰色小字母太像噪点，撑不起一节的开头 */
 .eyebrow {
-  display: block;
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #06253C;
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--muted);
-  margin-bottom: 14px;
+  letter-spacing: 0.14em;
+  margin-bottom: 16px;
 }
 
 .num { font-variant-numeric: tabular-nums; }
@@ -137,7 +145,7 @@ a:hover { color: var(--ink); }
   gap: 8px;
   padding: 13px 22px;
   border: 1px solid transparent;
-  border-radius: 0;              /* 方角 */
+  border-radius: var(--r);
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -191,6 +199,7 @@ a.row:hover .row__title { color: var(--accent-d); }
 .card {
   background: var(--paper);
   border: 1px solid var(--line);
+  border-radius: var(--r);
   padding: 26px;
   transition: border-color .18s ease;
 }
@@ -675,7 +684,7 @@ html[data-locale="zh"] .foot__statement { max-width: 18em; }
 .chip {
   padding: 8px 15px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: var(--r-pill);
   background: var(--paper);
   color: var(--muted);
   font-family: inherit;
@@ -731,16 +740,20 @@ html[data-locale="zh"] .foot__statement { max-width: 18em; }
 .hero__inner {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
-  align-items: center;
+  gap: 32px;
+  align-items: start;
 }
 @media (min-width: 900px) {
-  .hero__inner { grid-template-columns: 1.35fr 0.65fr; gap: 56px; }
+  .hero__inner { grid-template-columns: 1fr 1fr; gap: 0; }
+  /* 名字顶在最上并压住照片，形成层次，而不是左右并排两块 */
+  .hero__text { position: relative; z-index: 2; padding-top: 18px; }
+  .hero__portrait { margin-left: -14%; margin-top: 64px; }
 }
 .hero-name {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.04;
-  letter-spacing: -0.025em;
+  /* 整屏的锚点 —— 必须压倒性地大，其余元素逐级变小 */
+  font-size: clamp(3.25rem, 11vw, 8rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
   /* 不强制大写 —— 名字保持 LinkedIn 上的写法：Peter M. */
 }
 .hero__tagline {
@@ -757,9 +770,10 @@ html[data-locale="zh"] .foot__statement { max-width: 18em; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
 .hero__portrait {
-  aspect-ratio: 1 / 1;
-  border: 1px solid var(--line);
+  position: relative;
+  aspect-ratio: 4 / 5;
   background: var(--panel);
+  border-radius: var(--r);
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -799,6 +813,7 @@ html[data-locale="zh"] .intro { max-width: 34em; margin-inline: auto; }
   background: var(--paper);
   border: 1px solid var(--line);
   border-top: 3px solid var(--accent);
+  border-radius: var(--r);
   padding: 24px 24px 26px;
 }
 .value__label { font-size: 1.0625rem; }
@@ -818,6 +833,7 @@ html[data-locale="zh"] .intro { max-width: 34em; margin-inline: auto; }
   height: 100%;
   background: var(--paper);
   border: 1px solid var(--line);
+  border-radius: var(--r);
   padding: 24px 22px 20px;
   transition: border-color .18s ease, transform .18s ease;
 }
@@ -847,6 +863,7 @@ html[data-locale="zh"] .pcard__topic { letter-spacing: 0.05em; }
   margin: 0;
   background: var(--paper);
   border: 1px solid var(--line);
+  border-radius: var(--r);
   padding: 24px 22px;
   display: flex;
   flex-direction: column;
@@ -878,6 +895,7 @@ html[data-locale="zh"] .pcard__topic { letter-spacing: 0.05em; }
    ========================================================================== */
 
 .ph {
+  border-radius: var(--r);
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -898,3 +916,176 @@ html[data-locale="zh"] .pcard__topic { letter-spacing: 0.05em; }
   color: var(--accent-d);
 }
 html[data-locale="zh"] .ph__tag { letter-spacing: 0.05em; }
+
+/* ==========================================================================
+   关于页：连排段落，每段开头的词加粗（run-in heading）
+   ========================================================================== */
+
+.about-prose { max-width: 66ch; }
+html[data-locale="zh"] .about-prose { max-width: 36em; }
+
+.about-prose h1 { margin-bottom: 26px; }
+.about-prose .intro__body { margin-bottom: 30px; }
+
+.run-in {
+  margin-bottom: 1.15em;
+  font-size: 1.0625rem;
+  color: var(--body);
+  max-width: none;
+}
+.run-in b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   层级重做：大宣言、时间轴、压在照片上的 say hello
+   ========================================================================== */
+
+/* 自述改成一句跨行的大宣言，中间一道青色横杠 */
+.intro { max-width: 30ch; }
+.statement {
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 22ch;
+  margin: 0 auto;
+}
+html[data-locale="zh"] .statement { max-width: 20em; letter-spacing: 0; }
+.statement .dash {
+  display: inline-block;
+  width: 54px;
+  height: 4px;
+  background: var(--accent);
+  vertical-align: 0.28em;
+  margin: 0 12px;
+}
+.statement__sub {
+  margin: 22px auto 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+html[data-locale="zh"] .statement__sub { max-width: 34em; }
+.statement-wrap { text-align: center; }
+
+/* 压在照片右下角的联系小块 —— 整站唯一一处「打招呼」的俏皮 */
+.hello-chip {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: var(--accent);
+  color: #06253C;
+  padding: 14px 18px;
+  border-top-left-radius: var(--r);
+  max-width: 78%;
+}
+.hello-chip b {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+html[data-locale="zh"] .hello-chip b { letter-spacing: 0.04em; }
+.hello-chip a {
+  color: #06253C;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+/* —— 竖向时间轴 —— */
+.timeline { position: relative; max-width: 860px; margin-inline: auto; }
+.tl-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px 26px;
+  padding-bottom: 30px;
+  position: relative;
+}
+@media (min-width: 760px) {
+  .tl-item { grid-template-columns: 200px 26px 1fr; }
+}
+.tl-when { text-align: left; }
+@media (min-width: 760px) { .tl-when { text-align: right; } }
+.tl-org { display: block; font-weight: 700; color: var(--ink); }
+.tl-date {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+.tl-rail { position: relative; display: none; }
+@media (min-width: 760px) { .tl-rail { display: block; } }
+.tl-rail::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  bottom: -30px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--line);
+}
+.tl-item:last-child .tl-rail::before { display: none; }
+.tl-dot {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  border: 2px solid var(--paper);
+}
+.tl-role { display: block; font-weight: 700; color: var(--ink); }
+.tl-what { display: block; margin-top: 5px; color: var(--muted); font-size: 0.9375rem; }
+
+/* ==========================================================================
+   内页卡片：两列网格，比首页的三列宽一些，放得下「谁用得上」
+   ========================================================================== */
+
+.card-grid--2 { grid-template-columns: 1fr; }
+@media (min-width: 760px) {
+  .card-grid--2 { grid-template-columns: 1fr 1fr; }
+}
+
+.pcard__status {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.pcard__audience {
+  display: block;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.pcard__audience-label {
+  display: inline-block;
+  margin-right: 7px;
+  color: var(--accent-d);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  vertical-align: 1px;
+}
+html[data-locale="zh"] .pcard__audience-label { letter-spacing: 0.04em; }
+.pcard__by { display: block; margin-top: 8px; color: var(--muted); font-size: 0.8125rem; }
+
+/* 页头居中时，筛选 chip 也居中 */
+.chips { justify-content: center; }
+
+/* 分组小标题（工具页的「我做的 / 我在用的」）居中 */
+.group-head { text-align: center; margin-bottom: 26px; }

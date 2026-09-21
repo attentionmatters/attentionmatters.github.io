@@ -29,10 +29,12 @@ export const en = {
 
   intro: {
     eyebrow: "INTRO",
-    greeting: "Hi! I'm Peter —",
+    greeting: "Hi! I'm Peter",
     body:
       "These days, I'd describe myself as a midlife rebel. For twelve years, I've worked in fast-growing, ambitious companies, pushing myself to outdo my peers — caught in a cycle of competing and proving myself. Now, I'm rethinking what deserves my time and attention.",
     more: "More about me",
+    sayHello: "say hello!",
+    emailMe: "email me @",
   },
 
   identities: {

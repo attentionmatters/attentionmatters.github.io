@@ -39,7 +39,7 @@ export default async function Work({
   return (
     <>
       <section className="section section--flush page-head">
-        <div className="wrap">
+        <div className="wrap head-center">
           <span className="eyebrow">{t.work.eyebrow}</span>
           <h1>{t.work.title}</h1>
           <p className="lede">{t.work.intro}</p>

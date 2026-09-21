@@ -39,7 +39,7 @@ export default async function Tools({
   return (
     <>
       <section className="section section--flush page-head">
-        <div className="wrap">
+        <div className="wrap head-center">
           <span className="eyebrow">{t.tools.eyebrow}</span>
           <h1>{t.tools.title}</h1>
           <p className="lede">{t.tools.intro}</p>

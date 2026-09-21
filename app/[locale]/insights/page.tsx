@@ -40,7 +40,7 @@ export default async function Insights({
   return (
     <>
       <section className="section section--flush page-head">
-        <div className="wrap">
+        <div className="wrap head-center">
           <span className="eyebrow">{t.insights.eyebrow}</span>
           <h1>{t.insights.title}</h1>
           <p className="lede">{t.insights.intro}</p>
@@ -49,32 +49,27 @@ export default async function Insights({
 
       <section className="section">
         <div className="wrap">
-          {/* 堆叠行，细线分隔，不用缩略图 */}
-          <div className="rows">
+          <div className="card-grid card-grid--2">
             {sorted.map((post) => (
               <Link
-                className="row"
+                className="pcard"
                 key={post.slug}
                 href={`/${locale}/insights/${post.slug}/`}
               >
-                <span className="row__period">{post.date}</span>
-                <span>
-                  <span className="row__title">{post.title[locale]}</span>
-                  <span className="row__outcome">{post.excerpt[locale]}</span>
-                  <span className="tags">
-                    <span
-                      className={`tag ${post.kind === "data" ? "tag--data" : ""}`}
-                    >
-                      {post.kind === "data"
-                        ? t.insights.backedByData
-                        : t.insights.opinion}
-                    </span>
-                    <span className="tag">{t.topics[post.topic]}</span>
+                <span className="pcard__status num">
+                  {post.date} · {post.readingMinutes} {t.insights.readingTime}
+                </span>
+                <h3 className="pcard__title">{post.title[locale]}</h3>
+                <p className="pcard__summary">{post.excerpt[locale]}</p>
+                <span className="tags">
+                  <span className={`tag ${post.kind === "data" ? "tag--data" : ""}`}>
+                    {post.kind === "data"
+                      ? t.insights.backedByData
+                      : t.insights.opinion}
                   </span>
+                  <span className="tag">{t.topics[post.topic]}</span>
                 </span>
-                <span className="row__meta num">
-                  {post.readingMinutes} {t.insights.readingTime}
-                </span>
+                <span className="pcard__go" aria-hidden="true">→</span>
               </Link>
             ))}
           </div>

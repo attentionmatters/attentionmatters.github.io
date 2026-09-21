@@ -12,7 +12,12 @@ type Labels = {
   byLabel?: string;
 };
 
-/** Work 与 Tools 共用的条目列表：标题 + 帮你做什么 + 谁用得上 + 状态 */
+/**
+ * Work 与 Tools 共用的条目卡片网格。
+ *
+ * 原来是一列细线横排，通篇看下来像数据表；改成卡片后每一件是独立的一块，
+ * 和首页的作品卡用同一套样式。
+ */
 export function EntryList({
   entries,
   locale,
@@ -26,38 +31,42 @@ export function EntryList({
   labels: Labels;
 }) {
   return (
-    <ul className="project-list">
+    <div className="card-grid card-grid--2">
       {entries.map((e) => (
-        <li key={e.slug}>
-          <Link className="project" href={`/${locale}/${basePath}/${e.slug}/`}>
-            <span className="project__head">
-              <h2 className="project__title">{e.title[locale]}</h2>
-              <span className="project__status">
-                {e.parts && labels.partCount
-                  ? `${e.parts.length} ${labels.partCount}`
-                  : e.status === "live"
-                    ? labels.open
-                    : e.visibility === "gated"
-                      ? labels.gated
-                      : labels.soon}
-              </span>
+        <Link
+          className="pcard"
+          key={e.slug}
+          href={`/${locale}/${basePath}/${e.slug}/`}
+        >
+          <span className="pcard__status">
+            {e.parts && labels.partCount
+              ? `${e.parts.length} ${labels.partCount}`
+              : e.status === "live"
+                ? labels.open
+                : e.visibility === "gated"
+                  ? labels.gated
+                  : labels.soon}
+          </span>
+
+          <h3 className="pcard__title">{e.title[locale]}</h3>
+          <p className="pcard__summary">{e.summary[locale]}</p>
+
+          <span className="pcard__audience">
+            <span className="pcard__audience-label">{labels.audience}</span>
+            {e.audience[locale]}
+          </span>
+
+          {e.by && (
+            <span className="pcard__by">
+              {labels.byLabel} {e.by.name}
             </span>
+          )}
 
-            <p className="project__summary">{e.summary[locale]}</p>
-
-            <span className="project__audience">
-              <span className="project__audience-label">{labels.audience}</span>
-              {e.audience[locale]}
-            </span>
-
-            {e.by && (
-              <span className="project__by">
-                {labels.byLabel} {e.by.name}
-              </span>
-            )}
-          </Link>
-        </li>
+          <span className="pcard__go" aria-hidden="true">
+            →
+          </span>
+        </Link>
       ))}
-    </ul>
+    </div>
   );
 }
