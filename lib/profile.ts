@@ -16,3 +16,10 @@ export const hasResume = RESUME_PATH !== null;
 
 /** 按钮实际的目标地址 */
 export const RESUME_URL = RESUME_PATH ?? LINKEDIN;
+
+/**
+ * 肖像照。放进 public/ 后把路径填在这里（如 "/peter.jpg"）。
+ * 为 null 时 Hero 保持单栏，不会留一个空框。
+ */
+export const PORTRAIT_PATH: string | null = null;
+export const hasPortrait = PORTRAIT_PATH !== null;

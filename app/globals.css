@@ -9,11 +9,11 @@
   color-scheme: light;
 
   /* —— 表面 —— */
-  --paper:      #FFFFFF;   /* 页面底 */
-  --panel:      #F4F4F4;   /* 面板 / 次级区块 */
-  --panel-2:    #FAFAFA;   /* 更浅的交替底 */
-  --line:       #DADADA;   /* 1px 细线 —— 整个设计的骨架 */
-  --line-hi:    #B9BEC6;   /* hover 时的线 */
+  --paper:      #FDFCFA;   /* 页面底 —— 微暖的纸色，不用纯白，去掉工程图纸感 */
+  --panel:      #F5F2EE;   /* 面板 / 次级区块 —— 暖灰 */
+  --panel-2:    #FAF8F5;   /* 更浅的交替底 */
+  --line:       #E6E1D9;   /* 1px 细线 —— 调暖，不再是冷灰 */
+  --line-hi:    #C9C2B6;   /* hover 时的线 */
 
   /* —— 文字 —— */
   --ink:        #05164D;   /* 标题：藏青 */
@@ -35,9 +35,9 @@
                Helvetica, Arial, sans-serif;
 
   /* —— 栅格 —— */
-  --max:       1240px;
+  --max:       1100px;
   --gutter:    24px;
-  --section-y: clamp(72px, 10vh, 132px);
+  --section-y: clamp(88px, 12vh, 168px);
 }
 
 @media (min-width: 1024px) {
@@ -118,19 +118,17 @@ a:hover { color: var(--ink); }
 .section--flush { border-top: 0; }
 .section--panel { background: var(--panel); }
 
-/* 非对称栅格：标题占左 4 列，内容从第 6 列起 —— 正文不居中 */
-.grid-asym {
-  display: grid;
-  gap: 32px 40px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 1024px) {
-  .grid-asym {
-    grid-template-columns: repeat(12, 1fr);
-  }
-  .grid-asym > .col-head { grid-column: 1 / span 4; }
-  .grid-asym > .col-body { grid-column: 6 / span 7; }
-}
+/* 区块版式：标题在内容正上方，整块居中。
+   （原来用的非对称栅格会让每一节左半边空着，通篇看下来散且没有重心。） */
+.grid-asym { display: block; }
+.grid-asym > .col-head { margin-bottom: 34px; }
+.grid-asym > .col-head h2 { margin-top: 6px; }
+.grid-asym > .col-body { display: block; }
+
+/* 区块标题居中的那一类 */
+.head-center { text-align: center; margin-bottom: 42px; }
+.head-center .lede { margin-inline: auto; }
+.head-center .eyebrow { margin-bottom: 10px; }
 
 /* —— 按钮 —— */
 .btn {
@@ -198,13 +196,11 @@ a.row:hover .row__title { color: var(--accent-d); }
 }
 .card:hover { border-color: var(--line-hi); }
 
-/* —— 入场动效：只做淡入 + 12px 上移 —— */
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .4s ease-out, transform .4s ease-out;
-}
-.reveal.is-in { opacity: 1; transform: none; }
+/* —— 入场动效：只做淡入 + 12px 上移 ——
+   默认可见。只有被 JS 标记为 data-armed（即挂载时在首屏之外）的元素
+   才先隐藏、等进入视口再淡入。这样无 JS / 观察器失效时内容照常可见。 */
+.reveal { transition: opacity .4s ease-out, transform .4s ease-out; }
+.reveal[data-armed]:not(.is-in) { opacity: 0; transform: translateY(12px); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -723,3 +719,182 @@ html[data-locale="zh"] .foot__statement { max-width: 18em; }
 .by-line { margin-top: 22px; font-size: 0.9375rem; color: var(--muted); }
 
 .group-head--gap { margin-top: 56px; }
+
+/* ==========================================================================
+   首页新版式 —— 居中、留白大、卡片化
+   ========================================================================== */
+
+.section--tight { padding-block: clamp(56px, 7vh, 96px); }
+
+/* —— Hero：左字右像 —— */
+.hero { padding-block: clamp(56px, 9vh, 112px) clamp(48px, 7vh, 88px); }
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero__inner { grid-template-columns: 1.35fr 0.65fr; gap: 56px; }
+}
+.hero-name {
+  font-size: clamp(2.125rem, 5.2vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.hero__tagline {
+  margin-top: 16px;
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  font-weight: 600;
+  color: var(--accent-d);
+}
+.hero__roles {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+.hero__portrait {
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.hero__portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* —— 自述：窄栏、第一人称 —— */
+.intro { max-width: 62ch; margin-inline: auto; }
+html[data-locale="zh"] .intro { max-width: 34em; margin-inline: auto; }
+.intro__greeting {
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.intro__body { font-size: 1.0625rem; color: var(--body); }
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  font-weight: 600;
+  color: var(--accent-d);
+}
+.arrow-link:hover { color: var(--ink); }
+
+/* —— 四条信条 —— */
+.value-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) { .value-grid { grid-template-columns: 1fr 1fr; } }
+.value {
+  height: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  padding: 24px 24px 26px;
+}
+.value__label { font-size: 1.0625rem; }
+.value__body { margin-top: 10px; color: var(--muted); font-size: 0.9375rem; }
+
+/* —— 作品 / 工具卡片 —— */
+.card-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.pcard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 24px 22px 20px;
+  transition: border-color .18s ease, transform .18s ease;
+}
+.pcard:hover { border-color: var(--accent); transform: translateY(-2px); }
+.pcard__topic {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-d);
+}
+html[data-locale="zh"] .pcard__topic { letter-spacing: 0.05em; }
+.pcard__title { margin-top: 10px; font-size: 1.0625rem; }
+.pcard__summary {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  max-width: none;
+}
+.pcard__go { margin-top: auto; padding-top: 18px; color: var(--accent-d); font-weight: 700; }
+
+.center-cta { margin-top: 34px; text-align: center; }
+
+/* —— 引语卡片 —— */
+.quote {
+  height: 100%;
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.quote blockquote {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--body);
+  line-height: 1.65;
+}
+.quote blockquote::before { content: "\201C"; color: var(--accent); font-weight: 700; }
+.quote blockquote::after  { content: "\201D"; color: var(--accent); font-weight: 700; }
+.quote__who {
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.quote__avatar { width: 40px; height: 40px; object-fit: cover; flex: none; }
+.quote__who b { display: block; font-size: 0.9375rem; color: var(--ink); }
+.quote__who em { font-style: normal; font-size: 0.8125rem; color: var(--muted); }
+
+/* —— say hello —— */
+.hello h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+
+/* ==========================================================================
+   「待填写」占位 —— 虚线灰字，一眼看出未完成，绝不拿编的内容顶上
+   ========================================================================== */
+
+.ph {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px dashed var(--line-hi);
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-align: left;
+}
+.ph--block { display: flex; justify-content: center; padding: 30px 22px; }
+.ph__tag {
+  flex: none;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-d);
+}
+html[data-locale="zh"] .ph__tag { letter-spacing: 0.05em; }

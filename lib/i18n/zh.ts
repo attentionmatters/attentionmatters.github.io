@@ -35,8 +35,10 @@ export const zh: Dictionary = {
 
   intro: {
     eyebrow: "自述",
+    greeting: "你好，我是 Peter ——",
     body:
       "我是 Gaojiannan（Peter）Mu。现阶段，我会用「中年叛逆者」来形容自己。过去十二年，我一直在高速发展、充满雄心的企业里工作，努力超越同龄人，不断竞争、证明自己。现在，我开始重新思考，什么值得我的时间和关注。",
+    more: "更多关于我",
   },
 
   identities: {
@@ -138,6 +140,18 @@ export const zh: Dictionary = {
     filterLabel: "按主题筛选",
   },
 
+  values: {
+    eyebrow: "我的工作方式",
+    title: "我的工作方式",
+    placeholder: "待填写：工作方式，四条 —— 你不让步的那几件事。",
+  },
+
+  testimonials: {
+    eyebrow: "他人评价",
+    title: "和我共事过的人",
+    placeholder: "待填写：他人评价，三条 —— 每条一句话，附姓名、职务、头像。",
+  },
+
   about: {
     eyebrow: "关于",
     title: "完整版本",
@@ -146,7 +160,7 @@ export const zh: Dictionary = {
 
   contact: {
     eyebrow: "联系",
-    title: "聊聊",
+    title: "打个招呼",
     body:
       "在招 AI 岗位、想搭一支跨境团队，或者只是想交流想法 —— 我都会认真看。",
     email: "邮箱",

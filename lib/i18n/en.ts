@@ -29,8 +29,10 @@ export const en = {
 
   intro: {
     eyebrow: "INTRO",
+    greeting: "Hi! I'm Peter —",
     body:
       "I'm Gaojiannan (Peter) Mu. These days, I'd describe myself as a midlife rebel. For twelve years, I've worked in fast-growing, ambitious companies, pushing myself to outdo my peers — caught in a cycle of competing and proving myself. Now, I'm rethinking what deserves my time and attention.",
+    more: "More about me",
   },
 
   identities: {
@@ -132,6 +134,18 @@ export const en = {
     filterLabel: "Filter by topic",
   },
 
+  values: {
+    eyebrow: "HOW I WORK",
+    title: "How I work",
+    placeholder: "To be filled in: four working principles — what you don't compromise on.",
+  },
+
+  testimonials: {
+    eyebrow: "WHAT PEOPLE SAY",
+    title: "People I've worked with",
+    placeholder: "To be filled in: three quotes — each with a name, a role and a headshot.",
+  },
+
   about: {
     eyebrow: "ABOUT",
     title: "The long version",
@@ -140,7 +154,7 @@ export const en = {
 
   contact: {
     eyebrow: "CONTACT",
-    title: "Let's talk",
+    title: "say hello!",
     body:
       "Hiring for AI roles, building a team across borders, or just want to compare notes — I read everything.",
     email: "Email",
