@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/site";
 import type { Dictionary } from "@/lib/i18n";
 import { LanguageToggle } from "./language-toggle";
@@ -18,6 +18,22 @@ export function Nav({ locale, t }: { locale: Locale; t: Dictionary }) {
     { href: `/${locale}/tools/`, label: t.nav.tools },
     { href: `/${locale}/insights/`, label: t.nav.insights },
   ];
+
+  // 汉堡菜单是打开状态时按浏览器返回键，路由变了但菜单还盖在上面 ——
+  // 盯住 pathname，一变就收起来。
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Esc 关闭：菜单展开时它是页面上最上层的东西，键盘用户需要一个退出键
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const isActive = (href: string) =>
     href === `/${locale}/`

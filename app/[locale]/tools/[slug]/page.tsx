@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EntryDetail } from "@/components/entry-detail";
 import { getDictionary } from "@/lib/i18n";
-import { LOCALES, SITE_URL, isLocale } from "@/lib/site";
+import { detailMetadata } from "@/lib/metadata";
+import { LOCALES, isLocale } from "@/lib/site";
 import { findTool, tools } from "@/lib/content/tools";
 
 export function generateStaticParams() {
@@ -16,18 +17,12 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const entry = findTool(slug);
   if (!entry) return {};
-  return {
+  return detailMetadata({
+    locale,
+    path: `tools/${slug}/`,
     title: entry.title[locale],
     description: entry.summary[locale],
-    alternates: {
-      canonical: `${SITE_URL}/${locale}/tools/${slug}/`,
-      languages: {
-        en: `${SITE_URL}/en/tools/${slug}/`,
-        "zh-Hans": `${SITE_URL}/zh/tools/${slug}/`,
-        "x-default": `${SITE_URL}/en/tools/${slug}/`,
-      },
-    },
-  };
+  });
 }
 
 export default async function ToolDetail({

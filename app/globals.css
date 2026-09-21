@@ -493,7 +493,10 @@ a.row:hover .row__title { color: var(--accent-d); }
 .head-cta { margin-top: 22px; }
 
 .back {
-  display: inline-flex;
+  /* inline-flex 会让紧跟其后的日期胶囊贴到同一行上，margin-bottom 也压不住 —— 
+     改成 flex + fit-content：自己占一行，宽度仍只包住文字，点击区不会拉满整行 */
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 7px;
   margin-bottom: 26px;
@@ -1182,3 +1185,30 @@ html[data-locale="zh"] .pcard--lg .pcard__topic { letter-spacing: 0.04em; }
   transition: transform .3s ease;
 }
 .pcard--lg:hover .pcard__cover img { transform: scale(1.02); }
+
+/* —— 404 —— 
+   GitHub Pages 对任何坏链接都返回同一个 404.html，这一页拿不到 locale。
+   两种语言都渲染出来，靠 <html data-nf> 显示其中一种；脚本没跑时
+   两段都在，读者照样看得懂、点得动，不会撞到空白页。 */
+.nf { padding-top: clamp(64px, 12vh, 120px); }
+/* 只约束正文宽度 —— 标题跟着走会被挤成三行 */
+.nf__inner { max-width: 62ch; }
+.nf .lede { max-width: 46ch; }
+/* 404 在 [locale] 之外，没有 Nav，补一条只有站标的顶栏 */
+.nf__bar {
+  padding-block: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.nf h1 { margin: 8px 0 0; }
+.nf .lede { margin-top: 14px; }
+.nf__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.nf__pane + .nf__pane { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line); }
+html[data-nf] .nf__pane { display: none; }
+html[data-nf] .nf__pane + .nf__pane { margin-top: 0; padding-top: 0; border-top: 0; }
+html[data-nf="en"] .nf__pane[data-nf-lang="en"],
+html[data-nf="zh"] .nf__pane[data-nf-lang="zh"] { display: block; }

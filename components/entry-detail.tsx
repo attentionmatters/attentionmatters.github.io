@@ -88,6 +88,8 @@ export function EntryDetail({
 
         {entry.parts ? null : entry.status === "live" && entry.href ? (
           <p className="detail-actions">
+            {/* 新标签页打开的用 ↗，站内跳转用 → —— 箭头方向要和实际行为一致，
+                否则读者以为还在站内，点完却发现开了新标签页 */}
             <a
               className="btn btn--primary"
               href={entry.href}
@@ -95,7 +97,10 @@ export function EntryDetail({
                 ? { target: "_blank", rel: "noopener" }
                 : {})}
             >
-              {labels.open} <span aria-hidden="true">→</span>
+              {labels.open}{" "}
+              <span aria-hidden="true">
+                {entry.source === "artifact" ? "↗" : "→"}
+              </span>
             </a>
           </p>
         ) : (
