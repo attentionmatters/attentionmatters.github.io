@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import { Source_Sans_3 } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const sourceSans = Source_Sans_3({
+// Aicher 那套是一个家族打天下。Helvetica Neue 本机装了就优先用（见 globals.css
+// 的 --font-sans），装不了的机器落到 Archivo —— 同为中性 grotesque，字面接近。
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-source-sans",
+  variable: "--font-archivo",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +40,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
         />
       </head>
-      <body className={sourceSans.variable}>{children}</body>
+      <body className={archivo.variable}>{children}</body>
     </html>
   );
 }

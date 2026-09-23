@@ -1,7 +1,10 @@
 /* ==========================================================================
    Peter Mu — 个人站样式系统
-   视觉语言（VI）沿用既有的 Lufthansa Technik 风格：
-   Source Sans 3 / Noto Sans SC · 16px · 藏青 #05164D · 青 #00AFCB · 方角
+   视觉语言（VI）：Otl Aicher / Lufthansa 1963，与 ai-data-map 同一套。
+     蓝 = RAL 5022 Nachtblau  ≈ #252850  （墨色，不用黑）
+     黄 = RAL 1028 Melonengelb ≈ #FF9B00  （唯一强调色，只作色块与规则线）
+   黄在白底上对比度仅 2.1:1，**永远不做正文色**；黄底上的字一律夜蓝。
+   字体一个家族打天下：Helvetica Neue → Archivo → Noto Sans SC。
    结构与版式（非对称栅格、hairline、eyebrow、时刻表式经历行）借自参考站。
    ========================================================================== */
 
@@ -9,30 +12,33 @@
   color-scheme: light;
 
   /* —— 表面 —— */
-  --paper:      #FDFCFA;   /* 页面底 —— 微暖的纸色，不用纯白，去掉工程图纸感 */
-  --panel:      #F5F2EE;   /* 面板 / 次级区块 —— 暖灰 */
-  --panel-2:    #FAF8F5;   /* 更浅的交替底 */
-  --line:       #E6E1D9;   /* 1px 细线 —— 调暖，不再是冷灰 */
-  --line-hi:    #C9C2B6;   /* hover 时的线 */
+  --paper:      #FFFFFF;   /* 页面底 —— 真白 */
+  --panel:      #F2F3F7;   /* 面板 / 次级区块 —— 灰场带一点蓝，与夜蓝同族 */
+  --panel-2:    #F6F7FA;   /* 更浅的交替底 */
+  --line:       #D4D6E0;   /* 1px 细线 */
+  --line-hi:    #A9ACBF;   /* hover 时的线 */
 
   /* —— 文字 —— */
-  --ink:        #05164D;   /* 标题：藏青 */
-  --body:       #1E2742;   /* 正文 */
-  --muted:      #5A6070;   /* 次要文字、eyebrow、日期（对比度 ≥ 6:1） */
+  --ink:        #252850;   /* 标题：夜蓝 RAL 5022 */
+  --body:       #252850;   /* 正文 —— 墨只有一个颜色 */
+  --muted:      #72768F;   /* 次要文字、eyebrow、日期 */
 
   /* —— 强调 —— */
-  --accent:     #00AFCB;   /* 青：链接、当前项、关键数字 */
-  --accent-d:   #02799E;   /* 深青：hover / 按下 */
-  --accent-wash:#00AFCB14; /* 8% 淡染，仅用于极小面积底色 */
-  --olive:      #6F822E;   /* 状态：正向 */
-  --alert:      #C04E4E;   /* 状态：警示 */
+  /* 甜瓜黄只作色块、规则线、标记 —— 站内 18 处用法里 16 处是 background/border，
+     另 2 处是装饰性引号。任何需要「可读」的文字色一律走 --accent-d（夜蓝）。 */
+  --accent:     #FF9B00;   /* 黄：色块、当前项标记、规则线 */
+  --accent-d:   #252850;   /* 夜蓝：hover 文字、需要读的强调字 */
+  --accent-wash:#FFF4E0;   /* 黄的淡底，小面积用 */
+  --olive:      #252850;   /* 状态：正向 —— 这套里正向也用墨色 + 黄块表达 */
+  --alert:      #A62B1F;   /* 状态：警示 —— 唯一的第三色，只给风险 */
 
   /* —— 字体 —— */
-  /* next/font 注入 --font-source-sans；中文族名直接写字面量，
-     避免任何一个变量缺失导致整条 font-family 失效、回落到衬线体 */
-  --font-sans: var(--font-source-sans, "Source Sans 3"), "Source Sans 3",
-               "Noto Sans SC", "Microsoft YaHei", "PingFang SC",
-               Helvetica, Arial, sans-serif;
+  /* Helvetica Neue 本机有就用；没有落到 next/font 注入的 Archivo。
+     中文族名直接写字面量，避免任一变量缺失导致整条失效、回落到衬线体。 */
+  --font-sans: "Helvetica Neue", Helvetica,
+               var(--font-archivo, "Archivo"), "Archivo",
+               "Noto Sans SC", "Microsoft YaHei UI", "Microsoft YaHei",
+               "PingFang SC", Arial, sans-serif;
 
   /* —— 形态 —— */
   --r:   6px;   /* 小圆角：保留一点亲和感，又不背离「方角」太远 */
@@ -109,7 +115,7 @@ a:hover { color: var(--ink); }
   padding: 5px 13px;
   border-radius: var(--r-pill);
   background: var(--accent);
-  color: #06253C;
+  color: #252850;
   font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -983,7 +989,7 @@ html[data-locale="zh"] .statement__sub { max-width: 34em; }
   right: 0;
   bottom: 0;
   background: var(--accent);
-  color: #06253C;
+  color: #252850;
   padding: 14px 18px;
   border-top-left-radius: var(--r);
   max-width: 78%;
@@ -997,7 +1003,7 @@ html[data-locale="zh"] .statement__sub { max-width: 34em; }
 }
 html[data-locale="zh"] .hello-chip b { letter-spacing: 0.04em; }
 .hello-chip a {
-  color: #06253C;
+  color: #252850;
   font-size: 0.875rem;
   text-decoration: underline;
   overflow-wrap: anywhere;
@@ -1133,7 +1139,7 @@ html[data-locale="zh"] .pcard--lg .pcard__topic { letter-spacing: 0.04em; }
   color: var(--accent-d);
 }
 .pcard--lg[data-tone="talent"] .pcard__topic {
-  background: #05164D14;
+  background: #25285014;
   color: var(--ink);
 }
 
